@@ -7,7 +7,7 @@ const apiKey = process.env.API_KEY;
 
 interface Props{
     data:{
-        page:Number,
+        page:number,
         results:[movie],
         total_pages:number,
     },
@@ -21,8 +21,8 @@ interface Props{
 
 interface movie{
     id:number,
-    title:String,
-    poster_path:String,
+    title:string,
+    poster_path:string,
 }
 
 const Movies: React.FC <Props> = ({data,genres}) => {

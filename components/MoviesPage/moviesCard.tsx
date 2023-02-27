@@ -1,28 +1,27 @@
-
 import Image from "next/image";
 import Link from "next/link";
-
-const imagePath = "https://image.tmdb.org/t/p/original";
-
+import ImageFallback from "../ImageWithFallback";
 
 interface props{
     movie:{
         id:number,
-        title:String,
-        poster_path:String,
+        title:string,
+        poster_path:string,
     }
 }
 
-
 const MovieCard: React.FC<props> = ({movie}) => {
-    const imgUrl = imagePath + movie.poster_path
 
     return (
-        <div className="mx-auto ">
-            <Link href={"/movies/"+movie.id}>
-                <Image src={imgUrl} priority={true} blurDataURL="/poster-placeholder.jpg" placeholder="blur" quality={30} width={320} height={400} alt=""/>
-            </Link>
-            <h2 className="text-xl mb-0 m-auto"><Link href={"/movies/"+movie.id}>{movie.title}</Link></h2>
+        <div className="mx-auto flex flex-col object-fill w-full">
+            <div className="mx-auto col-1 w-full relative" style={{aspectRatio:"2/3"}}>
+                <Link className="w-full" href={"/movies/"+movie.id}>
+                    <ImageFallback poster_path={movie.poster_path}  name={movie.title} />
+                </Link>
+            </div>
+            <div>
+                <h2 className="text-xl mb-0 m-auto"><Link href={"/movies/"+movie.id}>{movie.title}</Link></h2>
+            </div>
         </div>
     );
 }

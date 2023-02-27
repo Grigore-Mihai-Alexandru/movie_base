@@ -17,13 +17,14 @@ interface Props{
     genre:{
         page:number,
         results:[movie],
+        total_pages:number,
     },
-    pageNumber:number,
+    
     genreId:number,
     genreName:string,
 }
 
-const Genre: React.FC <Props> = ({genre, pageNumber, genreId, genreName}) => {
+const Genre: React.FC <Props> = ({genre, genreId, genreName}) => {
     let title = ""
     const genreArr = genreName.split(" ");
     if(genreArr.length == 1){
@@ -35,7 +36,6 @@ const Genre: React.FC <Props> = ({genre, pageNumber, genreId, genreName}) => {
             title += genreArr[i] + " "
         }
     }
-    
     
     return (
         <div className=" ">
@@ -51,7 +51,7 @@ const Genre: React.FC <Props> = ({genre, pageNumber, genreId, genreName}) => {
                     }
                 </div>
             </div>
-            <Pagination pageNumber={pageNumber} genreId={genreId.toString()} />
+            <Pagination totalPages={genre.total_pages} pageNumber={genre.page} genreId={genreId.toString()} />
         </div>
     );
 }
@@ -74,7 +74,7 @@ export const getServerSideProps = async(context:context) => {
     const apiFetch = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&api_key=${apiKey}&page=${pageNumber}`;
     const data = await fetch(apiFetch)
     const genre = await data.json()
-    return {props:{genre, pageNumber, genreId, genreName}}
+    return {props:{genre, genreId, genreName}}
 }
 
 
