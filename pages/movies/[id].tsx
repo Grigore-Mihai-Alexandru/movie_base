@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image"
 import Link from "next/link";
 
@@ -20,7 +21,7 @@ type genre = {
 const Movie: React.FC <movie> = (movie) => {
    
     return (
-        <div className="">
+        <><Head><title>{movie.title}</title></Head> 
             {movie &&
                 <div className="relative w-full " style={{height:"600px"}}>
                     <Image fill={true} objectFit="cover" priority={true} quality={50} src={imagePath+movie.backdrop_path} alt="" />
@@ -42,7 +43,7 @@ const Movie: React.FC <movie> = (movie) => {
                     </div>
                 </div>
             }
-        </div>
+        </>
     );
 }
 

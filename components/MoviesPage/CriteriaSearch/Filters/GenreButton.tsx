@@ -7,10 +7,21 @@ interface props{
     id:number,
     selectedGenres:string | string[],
     setSelectedGenres:any,
+    with_genres:string | undefined,
 }
 
-const Button: React.FC <props> = ({name, id, selectedGenres, setSelectedGenres}) => {
+const Button: React.FC <props> = ({name, id, selectedGenres, setSelectedGenres, with_genres}) => {
     const [active, setActive] = useState<boolean>(false)
+
+    useEffect(()=>{
+        if(with_genres !== undefined){
+            const withGenres = with_genres.split(",")
+            withGenres.map(genre=> {
+                if(genre === id.toString()) 
+                setActive(true)
+            })
+        }
+    },[with_genres])
 
     function handleActive(){
         setActive(!active)

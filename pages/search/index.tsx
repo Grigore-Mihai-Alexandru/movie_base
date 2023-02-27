@@ -1,5 +1,6 @@
 import Pagination from "@/components/Pagination";
 import SearchCard from "@/components/SearchPage/searchCard";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 interface props{
@@ -23,35 +24,35 @@ const SearchResults: React.FC <props> = ({movies, pageNumber}) => {
     console.log(movies)
     
     return (
-        <>
-        {movies.results && movies.results.length>0 &&
-        <>
-            <div className="flex flex-col sm:flex-row w-full px-8 my-12">
-                <div className="col-1 sm:w-1/4">
-                    <p className="text-3xl font-bold">Search Results For: {query} </p>
+        <><Head><title>Search</title></Head> 
+            {movies.results && movies.results.length>0 &&
+            <>
+                <div className="flex flex-col sm:flex-row w-full px-8 my-12">
+                    <div className="col-1 sm:w-1/4">
+                        <p className="text-3xl font-bold">Search Results For: {query} </p>
+                    </div>
+                    <div className="col-1 sm:w-3/4">
+                        {movies.results.map(movie=>
+                            <SearchCard 
+                            key={movie.id} 
+                            id={movie.id} 
+                            poster_path={movie.poster_path} 
+                            title={movie.title}
+                            overview={movie.overview}
+                            releaseDate={movie.release_date}
+                            />
+                        )}        
+                    </div>
+                        
                 </div>
-                <div className="col-1 sm:w-3/4">
-                    {movies.results.map(movie=>
-                        <SearchCard 
-                        key={movie.id} 
-                        id={movie.id} 
-                        poster_path={movie.poster_path} 
-                        title={movie.title}
-                        overview={movie.overview}
-                        releaseDate={movie.release_date}
-                        />
-                    )}        
+                <Pagination totalPages={movies.total_pages} pageNumber={pageNumber} genreId={undefined}/>
+            </>
+            }
+            { movies.results.length == 0 && 
+                <div>
+                    No Results Founds...
                 </div>
-                    
-            </div>
-            <Pagination totalPages={movies.total_pages} pageNumber={pageNumber} genreId={undefined}/>
-        </>
-        }
-        { movies.results.length == 0 && 
-            <div>
-                No Results Founds...
-            </div>
-        }
+            }
         </>
     );
 }

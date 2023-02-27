@@ -2,6 +2,7 @@ import CriteriaSearch from "@/components/MoviesPage/CriteriaSearch/CriteriaSearc
 import Pagination from "@/components/Pagination";
 import MovieCard from "@/components/MoviesPage/moviesCard";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const apiKey = process.env.API_KEY;
 
@@ -35,7 +36,7 @@ const Movies: React.FC <Props> = ({data,genres}) => {
         pageNumber = parseInt(page)
 
     return (
-        <>
+        <>  <Head><title>Movies Page</title></Head> 
             <h1 className="text-center text-3xl m-10">Movies page</h1>
             <div className="flex flex-row md:mx-10">
                 {

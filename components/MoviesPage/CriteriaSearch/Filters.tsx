@@ -65,7 +65,8 @@ const Filters: React.FC <props> = ({option, setOption, genres}) => {
                         <hr/>
                         <div className='mt-2'>
                             {genres.genres.map(genre=>
-                                <Button key={genre.id} name={genre.name} id={genre.id} selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} />
+                                <Button key={genre.id} name={genre.name} id={genre.id} 
+                                selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} with_genres={with_genres}/>
                             )}
                         </div>
                     </div>

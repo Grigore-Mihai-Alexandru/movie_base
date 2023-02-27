@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 
 const apiKey = process.env.API_KEY
@@ -14,6 +15,7 @@ interface genre{
 
 const Genres: React.FC <Props> = ({genres}) => {
     return (
+        <><Head><title>Genres Page</title></Head> 
         <div className="w-3/4 m-auto ">
             <h1 className="text-center text-3xl m-10">Movie Genres</h1>
             <div className="my-4">
@@ -26,6 +28,7 @@ const Genres: React.FC <Props> = ({genres}) => {
                 </ul>
             </div>
         </div>
+        </>
     );
 }
  
