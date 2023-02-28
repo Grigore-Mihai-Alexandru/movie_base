@@ -40,9 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <Navbar width ={width}/>
-      <main className='grow relative min-w-full min-h-full'>
-        <Component className="" style={{flex:"1 0 auto"}} {...pageProps} />
-      </main>
+      <Component  {...pageProps} />
       <Footer/>
 
     </div>

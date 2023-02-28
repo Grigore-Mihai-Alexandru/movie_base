@@ -39,7 +39,8 @@ const Genre: React.FC <Props> = ({genre, genreId, genreName}) => {
     }
     
     return (
-        <><Head><title>{title}</title></Head> 
+        <main className='grow relative min-w-full min-h-full'>
+        <Head><title>{title}</title></Head> 
             <div className="w-3/4 m-auto ">
                 <h1 className="text-center text-3xl my-10">{title}Movies</h1>
                 <div className="my-4">
@@ -53,7 +54,7 @@ const Genre: React.FC <Props> = ({genre, genreId, genreName}) => {
                 </div>
             </div>
             <Pagination totalPages={genre.total_pages} pageNumber={genre.page} genreId={genreId.toString()} />
-        </>
+        </main>
     );
 }
 

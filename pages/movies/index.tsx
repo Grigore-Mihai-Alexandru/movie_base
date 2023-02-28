@@ -36,7 +36,8 @@ const Movies: React.FC <Props> = ({data,genres}) => {
         pageNumber = parseInt(page)
 
     return (
-        <>  <Head><title>Movies Page</title></Head> 
+        <main className='grow relative min-w-full min-h-full'>
+        <Head><title>Movies Page</title></Head> 
             <h1 className="text-center text-3xl m-10">Movies page</h1>
             <div className="flex flex-row md:mx-10">
                 {
@@ -62,7 +63,7 @@ const Movies: React.FC <Props> = ({data,genres}) => {
             {data.results  && data.results.length>0 &&
                 <Pagination genreId={undefined} totalPages={data.total_pages} pageNumber={pageNumber} />
             }
-        </>
+        </main>
     );
 }
 

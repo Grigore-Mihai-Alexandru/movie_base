@@ -24,7 +24,8 @@ const SearchResults: React.FC <props> = ({movies, pageNumber}) => {
     console.log(movies)
     
     return (
-        <><Head><title>Search</title></Head> 
+        <main className='grow relative min-w-full min-h-full'>
+        <Head><title>Search</title></Head> 
             {movies.results && movies.results.length>0 &&
             <>
                 <div className="flex flex-col sm:flex-row w-full px-8 my-12">
@@ -53,7 +54,7 @@ const SearchResults: React.FC <props> = ({movies, pageNumber}) => {
                     No Results Founds...
                 </div>
             }
-        </>
+        </main>
     );
 }
 

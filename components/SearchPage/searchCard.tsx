@@ -17,7 +17,7 @@ const SearchCard: React.FC<props> = ({title, overview, id, poster_path, releaseD
             <div className="relative col-1 h-full" style={{aspectRatio:"2/3"}}>
                 <div style={{aspectRatio:"2/3"}}>
                     <Link href={"/movies/" + id}>
-                        <ImageFallback name={title} poster_path={poster_path} />
+                        <ImageFallback width={300} priority={true} name={title} poster_path={poster_path} />
                     </Link>
                 </div>
             </div>
