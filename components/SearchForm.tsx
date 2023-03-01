@@ -4,7 +4,6 @@ import {useState} from 'react'
 interface props{
     searchFormRef:any
 }
-// /search/movie
 
 const SearchForm: React.FC <props> = ({searchFormRef}) => {
     const [movieSearch, setMovieSearch] = useState<string>("")

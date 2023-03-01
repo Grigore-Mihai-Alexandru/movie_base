@@ -61,7 +61,7 @@ const Pagination: React.FC <props> = ({pageNumber, genreId, totalPages}) => {
                     <Link className="mx-2" href={`${linkBase}page=${pageNumber+1}`}>Next🡺</Link>
                 }
             </div>
-            <p>PAGE</p>
+            {/* <p>PAGE</p> */}
         </div>
     );
 }

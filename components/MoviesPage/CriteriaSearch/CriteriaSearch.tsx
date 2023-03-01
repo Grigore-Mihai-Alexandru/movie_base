@@ -13,12 +13,18 @@ interface props{
     }   
 }
 
+type filterQuery = {
+    selectedGenres:string | undefined | string [],
+    runtime:string | undefined,
+    date:string | undefined,
+}
+
 const CriteriaSearch: React.FC<props> = ({genres}) => { 
     const router = useRouter();
     let {sort_by} = router.query
 
     const [sortQuery, setSortQuery] = useState<string | string[] | undefined>(sort_by !== undefined ? sort_by : undefined)
-    const [filterQuery, setFilterQuery] = useState<[{selectedGenres:string | undefined | string [],runtime:string | undefined,date:string | undefined}] | undefined | string | string[]>()
+    const [filterQuery, setFilterQuery] = useState<filterQuery | undefined>()
 
     //page logic
     let {page} = router.query
@@ -65,7 +71,7 @@ const CriteriaSearch: React.FC<props> = ({genres}) => {
 
 
     return (
-        <div className="w-[270px] md:mr-10">
+        <div className="w-2/3 sm:w-[270px] md:mr-10">
             <Sort option={sortQuery} setOption={setSortQuery}/>
             <Filters genres={genres} option={filterQuery} setOption={setFilterQuery} />
             <button disabled={!search} className="bg-sky-500/100 hover:bg-sky-300/100 px-4 py-2 rounded w-full text-lg" onClick={() => setNavigate(true)}>Search</button>

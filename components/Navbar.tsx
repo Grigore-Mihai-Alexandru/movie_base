@@ -52,7 +52,7 @@ const Navbar: React.FC <props>= ({width}) => {
     }, [path])
     
     return (
-        <nav className="relative h-16 text-white flex flex-row border-b-2 border-zinc-50 ">
+        <nav className="relative h-16 text-white flex flex-row border-b-2 border-zinc-50 z-10">
             
             {width != undefined && width > 600 &&
             <>

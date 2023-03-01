@@ -1,12 +1,13 @@
 import Pagination from "@/components/Pagination";
 import MovieCard from "@/components/MoviesPage/moviesCard";
+import Head from "next/head";
 
 const apiKey = process.env.API_KEY;
 
 interface movie{
     id:number,
-    title:String,
-    poster_path:String,
+    title:string,
+    poster_path:string,
     genres:[{
         id:number,
         name:string,
@@ -17,13 +18,14 @@ interface Props{
     genre:{
         page:number,
         results:[movie],
+        total_pages:number,
     },
-    pageNumber:number,
+    
     genreId:number,
     genreName:string,
 }
 
-const Genre: React.FC <Props> = ({genre, pageNumber, genreId, genreName}) => {
+const Genre: React.FC <Props> = ({genre, genreId, genreName}) => {
     let title = ""
     const genreArr = genreName.split(" ");
     if(genreArr.length == 1){
@@ -36,9 +38,9 @@ const Genre: React.FC <Props> = ({genre, pageNumber, genreId, genreName}) => {
         }
     }
     
-    
     return (
-        <div className=" ">
+        <main className='grow relative min-w-full min-h-full'>
+        <Head><title>{title}</title></Head> 
             <div className="w-3/4 m-auto ">
                 <h1 className="text-center text-3xl my-10">{title}Movies</h1>
                 <div className="my-4">
@@ -51,8 +53,8 @@ const Genre: React.FC <Props> = ({genre, pageNumber, genreId, genreName}) => {
                     }
                 </div>
             </div>
-            <Pagination pageNumber={pageNumber} genreId={genreId.toString()} />
-        </div>
+            <Pagination totalPages={genre.total_pages} pageNumber={genre.page} genreId={genreId.toString()} />
+        </main>
     );
 }
 
@@ -74,7 +76,7 @@ export const getServerSideProps = async(context:context) => {
     const apiFetch = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&api_key=${apiKey}&page=${pageNumber}`;
     const data = await fetch(apiFetch)
     const genre = await data.json()
-    return {props:{genre, pageNumber, genreId, genreName}}
+    return {props:{genre, genreId, genreName}}
 }
 
 

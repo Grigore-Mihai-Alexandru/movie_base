@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <Navbar width ={width}/>
-      <Component className="" style={{flex:"1 0 auto"}} {...pageProps} />
+      <Component  {...pageProps} width={width} />
       <Footer/>
 
     </div>

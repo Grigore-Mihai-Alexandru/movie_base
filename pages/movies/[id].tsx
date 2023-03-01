@@ -1,48 +1,99 @@
+import VoteAverage from "@/components/MoviesPage/MoviePage/VoteAverage";
+import Head from "next/head";
 import Image from "next/image"
 import Link from "next/link";
 
-const imagePath = "https://image.tmdb.org/t/p/original";
-
-interface movie{
-    id:String,
-    title:String,
-    poster_path:String,
-    backdrop_path:String,
-    release_date:String,
-    genres:[genre],
-}
+const imagePath = "https://image.tmdb.org/t/p/";
 
 type genre = {
     name:string,
     id:number,
 }
+interface props{
+    movie:{
+        id:string,
+        title:string,
+        poster_path:string,
+        backdrop_path:string,
+        release_date:string,
+        runtime:number,
+        genres:[genre],
+        overview:string | undefined,
+        vote_average:number,
+        tagline:string|undefined
+    },
+    width:number|undefined,
+}
 
-const Movie: React.FC <movie> = (movie) => {
-   
+
+const Movie: React.FC <props> = ({movie,width}) => {
+    console.log(movie)
     return (
-        <div className="">
+        <main className='grow relative min-w-full min-h-full'>
+        <Head>
+            <title>{movie.title}</title>
+        </Head> 
             {movie &&
                 <div className="relative w-full " style={{height:"600px"}}>
-                    <Image fill={true} objectFit="cover" priority={true} quality={50} src={imagePath+movie.backdrop_path} alt="" />
-                    <div className="absolute object-center bg-gradient-to-tr from-purple-500 w-full h-full">
-                        <div className="max-w-5xl h-full flex flex-row justify-center items-center mx-4">
-                            <div className="relative" style={{width:"20em",height:"400px"}}>
-                                <Image className="rounded-md" priority={true} src={imagePath+movie.poster_path} quality={50} fill={true} objectFit="cover" alt="" />
+                    <Image fill={true} objectFit="cover" priority={true}
+                    quality={50} src={imagePath + "w500" + movie.backdrop_path} alt="" />
+                    <Image fill={true} objectFit="cover"
+                    quality={50} src={imagePath + "original" + movie.backdrop_path} alt="" />
+                    <div className="absolute  w-full h-full" style={{background: "rgba(61,61,64,0.7)"}}></div>
+                    <div className="max-w-5xl h-fit sm:h-full flex flex-col sm:flex-row items-center mx-auto">
+                        <div className="relative" 
+                            style={{
+                                width:"200px",
+                                height:"300px",
+                                aspectRatio:"2/3",
+                            }}>
+                            <Image className="rounded-md relative" priority={true} src={imagePath + "w300" + movie.poster_path} 
+                            quality={30} width={200} height={300} alt="" />
+                            <Image className="rounded-md" src={imagePath + "original" + movie.poster_path} 
+                            quality={30} fill={true}  alt="" />
+                        </div>
+                        <div className="relative h-fit">
+                            <div className=" text-2xl sm:text-4xl px-2 text-center sm:text-left">
+                                <span className="font-bold"><Link href={"/movies/" + movie.id}>{movie.title}</Link></span>  
+                                <span className=" text-lg sm:text-3xl text-gray-300"> ({movie.release_date.slice(0,4)})</span>
                             </div>
-                            <div >
-                                <h2 className=" text-4xl px-2">{movie.title}  </h2>
-                                <h3 className="text-3xl text-gray-300">({movie.release_date.slice(0,4)})</h3>
-                                <div className="flex flex-row">
-                                    {movie.genres.map( (genre) =>
-                                        <h4 className="mx-2"><Link href={`/genres/${genre.id}`+`?genre_name=${genre.name.toLowerCase()}`}>{genre.name}</Link></h4>
-                                    )}
+                            <div className="flex flex-row p-2 bg-slate-300/[0.5]  sm:bg-none">
+                                <ul className="sm:list-disc flex flex-col sm:flex-row justify-between">
+                                    <li className="mx-2">
+                                        <ul className="list-none flex flex-row">
+                                            {movie.genres.map( (genre) =>
+                                                <li key={genre.id} className="px-2 font-bold hover:text-blue-300">
+                                                    <Link href={`/genres/${genre.id}`+`?genre_name=${genre.name.toLowerCase()}`}>
+                                                        {genre.name}
+                                                    </Link>
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </li>
+                                    <li className="mx-2 ">{ runtime(movie.runtime)}</li>
+                                </ul>
+                            </div>
+                            <div className="relative flex h-[70px] flex-row mx-5 my-2 " style={{alignItems:"center"}}>
+                                <VoteAverage vote_average={movie.vote_average}/>
+                                <div className="absolute left-[75px] col-1">
+                                    <div>User</div>
+                                    <div>Score</div>
                                 </div>
+                            </div>
+                            <div className="pb-2 px-2">
+                                {movie.tagline !==undefined &&
+                                    <p className="text-md sm:text-lg font-extralight text-gray py-2"><i>{movie.tagline}</i></p>
+                                }
+                                <h2 className="text-lg sm:text-xl mb-2 font-bold">Overview</h2>
+                                {movie.overview !== undefined &&
+                                <p className="text-md">{movie.overview}</p>
+                            }
                             </div>
                         </div>
                     </div>
                 </div>
             }
-        </div>
+        </main>
     );
 }
 
@@ -56,10 +107,23 @@ export const getServerSideProps = async(context:context) =>{
     const apiKey = process.env.API_KEY
     const data = await fetch(`https://api.themoviedb.org/3/movie/${context.params.id}?api_key=${apiKey}`)
     const movie = await data.json()
-    return {props:movie}
+    return {props:{movie}}
 } 
 
 export default Movie;
 
 
-//https://api.themoviedb.org/3/movie/505642?api_key=3367b9fae21a703d1c49162540d30c81
+function runtime (movieRuntime:number){
+    let run = movieRuntime
+    let result:string = ""
+    let i = 0
+    while(run >= 60){
+        i++
+        run -= 60
+    }
+    if(i>0)
+        result = i.toString() + "h "
+    if(run>0)
+        result = result + run + "min" 
+    return result
+}

@@ -7,8 +7,14 @@ import Button from './Filters/GenreButton';
 import DateInput from './Filters/Date';
 import { useRouter } from 'next/router';
 
+type filterQuery = {
+    selectedGenres:string | undefined | string [],
+    runtime:string | undefined,
+    date:string | undefined,
+}
+
 interface props{
-    option:string | string[] | [{}] | undefined,
+    option:filterQuery | undefined,
     setOption:any,
     genres:{
         genres:[{
@@ -65,7 +71,8 @@ const Filters: React.FC <props> = ({option, setOption, genres}) => {
                         <hr/>
                         <div className='mt-2'>
                             {genres.genres.map(genre=>
-                                <Button key={genre.id} name={genre.name} id={genre.id} selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} />
+                                <Button key={genre.id} name={genre.name} id={genre.id} 
+                                selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} with_genres={with_genres}/>
                             )}
                         </div>
                     </div>

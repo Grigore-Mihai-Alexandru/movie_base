@@ -2,12 +2,13 @@ import CriteriaSearch from "@/components/MoviesPage/CriteriaSearch/CriteriaSearc
 import Pagination from "@/components/Pagination";
 import MovieCard from "@/components/MoviesPage/moviesCard";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const apiKey = process.env.API_KEY;
 
 interface Props{
     data:{
-        page:Number,
+        page:number,
         results:[movie],
         total_pages:number,
     },
@@ -21,8 +22,8 @@ interface Props{
 
 interface movie{
     id:number,
-    title:String,
-    poster_path:String,
+    title:string,
+    poster_path:string,
 }
 
 const Movies: React.FC <Props> = ({data,genres}) => {
@@ -32,16 +33,17 @@ const Movies: React.FC <Props> = ({data,genres}) => {
     if(page==undefined)
         pageNumber = 1
     else
-        pageNumber = parseInt(page)
+        pageNumber = parseInt(page.toString())
 
     return (
-        <>
+        <main className='grow relative min-w-full min-h-full'>
+        <Head><title>Movies Page</title></Head> 
             <h1 className="text-center text-3xl m-10">Movies page</h1>
-            <div className="flex flex-row md:mx-10">
+            <div className="flex flex-col items-center sm:items-start sm:flex-row md:mx-10">
                 {
                     <CriteriaSearch genres={genres} />
                 }
-                {data.results && data.results.length == 0 &&
+                {data.results == undefined  &&
                     <div className="text-4xl ">
                         <p className="text-center">No Results Found...</p>
                     </div>
@@ -61,7 +63,7 @@ const Movies: React.FC <Props> = ({data,genres}) => {
             {data.results  && data.results.length>0 &&
                 <Pagination genreId={undefined} totalPages={data.total_pages} pageNumber={pageNumber} />
             }
-        </>
+        </main>
     );
 }
 
@@ -96,7 +98,6 @@ export const getServerSideProps = async(context:context) => {
     if(context.query.sort_by !== undefined)
         apiFetch = apiFetch + "&sort_by=" + context.query.sort_by
     let genresApi = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
-    //filter / sort logic
 
     const movies = await fetch(apiFetch)
     const data = await movies.json();
