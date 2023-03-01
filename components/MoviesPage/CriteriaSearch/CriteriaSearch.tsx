@@ -65,7 +65,7 @@ const CriteriaSearch: React.FC<props> = ({genres}) => {
 
 
     return (
-        <div className="w-[270px] md:mr-10">
+        <div className="w-2/3 sm:w-[270px] md:mr-10">
             <Sort option={sortQuery} setOption={setSortQuery}/>
             <Filters genres={genres} option={filterQuery} setOption={setFilterQuery} />
             <button disabled={!search} className="bg-sky-500/100 hover:bg-sky-300/100 px-4 py-2 rounded w-full text-lg" onClick={() => setNavigate(true)}>Search</button>

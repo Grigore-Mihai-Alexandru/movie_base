@@ -39,7 +39,7 @@ const Movies: React.FC <Props> = ({data,genres}) => {
         <main className='grow relative min-w-full min-h-full'>
         <Head><title>Movies Page</title></Head> 
             <h1 className="text-center text-3xl m-10">Movies page</h1>
-            <div className="flex flex-row md:mx-10">
+            <div className="flex flex-col items-center sm:items-start sm:flex-row md:mx-10">
                 {
                     <CriteriaSearch genres={genres} />
                 }
@@ -98,7 +98,6 @@ export const getServerSideProps = async(context:context) => {
     if(context.query.sort_by !== undefined)
         apiFetch = apiFetch + "&sort_by=" + context.query.sort_by
     let genresApi = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
-    //filter / sort logic
 
     const movies = await fetch(apiFetch)
     const data = await movies.json();
