@@ -7,7 +7,7 @@ interface props{
     id:number,
     selectedGenres:string | string[],
     setSelectedGenres:any,
-    with_genres:string | undefined,
+    with_genres:string | string[] | undefined,
 }
 
 const Button: React.FC <props> = ({name, id, selectedGenres, setSelectedGenres, with_genres}) => {
@@ -15,7 +15,7 @@ const Button: React.FC <props> = ({name, id, selectedGenres, setSelectedGenres, 
 
     useEffect(()=>{
         if(with_genres !== undefined){
-            const withGenres = with_genres.split(",")
+            const withGenres = with_genres.toString().split(",")
             withGenres.map(genre=> {
                 if(genre === id.toString()) 
                 setActive(true)
@@ -28,8 +28,8 @@ const Button: React.FC <props> = ({name, id, selectedGenres, setSelectedGenres, 
     }
 
     useEffect(()=>{
-        if(selectedGenres != "" && typeof selectedGenres != 'string []'){
-            let gen = selectedGenres.split(",") 
+        if(selectedGenres != ""){
+            let gen = selectedGenres.toString().split(",") 
             let genresArr = gen.filter(genre => genre !== "")
 
             let checkExist = genresArr.includes(id.toString())

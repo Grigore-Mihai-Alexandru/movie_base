@@ -4,13 +4,13 @@ import {useEffect, useState} from 'react'
 interface props{
     runtime:string | string[],
     setRuntime:any,
-    with_runtime_gte:string,
-    with_runtime_lte:string,
+    with_runtime_gte:string | string[] | undefined,
+    with_runtime_lte:string | string[] | undefined,
 }
 
 const Runtime: React.FC <props> = ({runtime, setRuntime, with_runtime_gte, with_runtime_lte}) => {
-    const [minRun, setMinRun] = useState<number>(with_runtime_gte !== undefined ? parseInt(with_runtime_gte) : 0)
-    const [maxRun, setMaxRun] = useState<number>(with_runtime_lte !== undefined ? parseInt(with_runtime_lte) :400)
+    const [minRun, setMinRun] = useState<number>(with_runtime_gte !== undefined ? parseInt(with_runtime_gte.toString()) : 0)
+    const [maxRun, setMaxRun] = useState<number>(with_runtime_lte !== undefined ? parseInt(with_runtime_lte.toString()) :400)
     const runGte = "with_runtime_gte="
     const runLte = "with_runtime_lte="
     

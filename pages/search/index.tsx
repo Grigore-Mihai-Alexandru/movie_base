@@ -49,7 +49,7 @@ const SearchResults: React.FC <props> = ({movies, pageNumber}) => {
                 <Pagination totalPages={movies.total_pages} pageNumber={pageNumber} genreId={undefined}/>
             </>
             }
-            { movies.results.length == 0 && 
+            { movies.results == undefined && 
                 <div>
                     No Results Founds...
                 </div>

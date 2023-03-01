@@ -19,7 +19,7 @@ interface genre{
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>
+    res: NextApiResponse<Data | any>
 ) {
   const fetchGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
   const genreBaseApi = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=`

@@ -7,8 +7,14 @@ import Button from './Filters/GenreButton';
 import DateInput from './Filters/Date';
 import { useRouter } from 'next/router';
 
+type filterQuery = {
+    selectedGenres:string | undefined | string [],
+    runtime:string | undefined,
+    date:string | undefined,
+}
+
 interface props{
-    option:string | string[] | [{}] | undefined,
+    option:filterQuery | undefined,
     setOption:any,
     genres:{
         genres:[{

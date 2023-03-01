@@ -6,8 +6,8 @@ const apiKey = process.env.API_KEY;
 
 interface movie{
     id:number,
-    title:String,
-    poster_path:String,
+    title:string,
+    poster_path:string,
     genres:[{
         id:number,
         name:string,

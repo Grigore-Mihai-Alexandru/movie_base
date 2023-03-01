@@ -13,12 +13,18 @@ interface props{
     }   
 }
 
+type filterQuery = {
+    selectedGenres:string | undefined | string [],
+    runtime:string | undefined,
+    date:string | undefined,
+}
+
 const CriteriaSearch: React.FC<props> = ({genres}) => { 
     const router = useRouter();
     let {sort_by} = router.query
 
     const [sortQuery, setSortQuery] = useState<string | string[] | undefined>(sort_by !== undefined ? sort_by : undefined)
-    const [filterQuery, setFilterQuery] = useState<[{selectedGenres:string | undefined | string [],runtime:string | undefined,date:string | undefined}] | undefined | string | string[]>()
+    const [filterQuery, setFilterQuery] = useState<filterQuery | undefined>()
 
     //page logic
     let {page} = router.query

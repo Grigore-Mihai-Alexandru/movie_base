@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 interface props{
     date:string | string[],
     setDate:any,
-    release_date_gte:string ,
-    release_date_lte:string ,
+    release_date_gte:string | string[] | undefined,
+    release_date_lte:string | string[] | undefined ,
 }
 const todayDate = new Date()
 const year = todayDate.getFullYear()
@@ -14,8 +14,8 @@ const day = todayDate.getDate()
 const today = year + "-" + (month/10 < 1?"0":"") + month + "-" + (day/10 <1?"0":"") + day
 
 const DateInput: React.FC <props> = ({date, setDate, release_date_gte, release_date_lte}) => {
-    const [fromDate, setFromDate] = useState<string>(release_date_gte !== undefined?release_date_gte:"")
-    const [toDate, setToDate] = useState<string>(release_date_lte !== undefined?release_date_lte:today)
+    const [fromDate, setFromDate] = useState<string | string[] | undefined>(release_date_gte !== undefined?release_date_gte:"")
+    const [toDate, setToDate] = useState<string | string[] | undefined>(release_date_lte !== undefined?release_date_lte:today)
     const releaseGte = "release_date_gte="
     const releaseLte = "release_date_lte="
     //param date  yyyy-mm-dd
@@ -29,7 +29,7 @@ const DateInput: React.FC <props> = ({date, setDate, release_date_gte, release_d
             if(toDate !== "")
                 setDate(releaseLte + toDate)
             else setDate("")
-    },[fromDate])
+    },[fromDate,toDate])
 
     useEffect(()=>{
         if(toDate !== "")
@@ -41,7 +41,7 @@ const DateInput: React.FC <props> = ({date, setDate, release_date_gte, release_d
             if(fromDate !== "")
                 setDate(releaseGte + fromDate)
         else setDate("")
-    },[toDate])
+    },[toDate,fromDate])
 
     return (
         <form>

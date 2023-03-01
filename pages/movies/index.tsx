@@ -33,7 +33,7 @@ const Movies: React.FC <Props> = ({data,genres}) => {
     if(page==undefined)
         pageNumber = 1
     else
-        pageNumber = parseInt(page)
+        pageNumber = parseInt(page.toString())
 
     return (
         <main className='grow relative min-w-full min-h-full'>
@@ -43,7 +43,7 @@ const Movies: React.FC <Props> = ({data,genres}) => {
                 {
                     <CriteriaSearch genres={genres} />
                 }
-                {data.results && data.results.length == 0 &&
+                {data.results == undefined  &&
                     <div className="text-4xl ">
                         <p className="text-center">No Results Found...</p>
                     </div>

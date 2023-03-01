@@ -62,7 +62,7 @@ const Movie: React.FC <props> = ({movie,width}) => {
                                     <li className="mx-2">
                                         <ul className="list-none flex flex-row">
                                             {movie.genres.map( (genre) =>
-                                                <li className="px-2 font-bold hover:text-blue-300">
+                                                <li key={genre.id} className="px-2 font-bold hover:text-blue-300">
                                                     <Link href={`/genres/${genre.id}`+`?genre_name=${genre.name.toLowerCase()}`}>
                                                         {genre.name}
                                                     </Link>
