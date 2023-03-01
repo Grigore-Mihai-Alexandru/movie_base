@@ -55,7 +55,7 @@ const Genres: React.FC <Props> = ({genres}) => {
 
 export const getServerSideProps = async() => {
     //get a secure route for api/genres
-    const fetchedData = await fetch("http://localhost:3000/api/genres")
+    const fetchedData = await fetch("/api/genres")
     const data = await fetchedData.json()
     return {props:{genres:data}}
 }
