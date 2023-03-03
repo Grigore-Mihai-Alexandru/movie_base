@@ -19,7 +19,7 @@ const Runtime: React.FC <props> = ({runtime, setRuntime, with_runtime_gte, with_
         let maxStr = maxRun.toString()
         if( minStr!== "0")
             if(maxStr !== "400")
-              setRuntime(runGte + minStr + runLte + maxStr)
+              setRuntime(runGte + minStr + "&" + runLte + maxStr)
         else 
             setRuntime(runGte + minStr)
         if(minStr === "0")
@@ -33,7 +33,7 @@ const Runtime: React.FC <props> = ({runtime, setRuntime, with_runtime_gte, with_
         let maxStr = maxRun.toString()
         if(maxStr !== "400")
             if( minStr!== "0")
-                setRuntime(runGte + minStr + runLte + maxStr)
+                setRuntime(runGte + minStr + "&" + runLte + maxStr)
         else 
             setRuntime(runLte + maxStr)
         if(maxStr === "400")

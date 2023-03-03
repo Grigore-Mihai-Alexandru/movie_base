@@ -23,7 +23,7 @@ const Genres: React.FC <Props> = ({genres}) => {
 
     return (
         <><Head><title>Genres Page</title></Head>
-        <div className="w-3/4 m-auto ">
+        <div className="relative w-3/4 m-auto ">
             <h1 className="text-center text-3xl m-10">Movie Genres</h1>
             <div className="my-4">
                 {genres.length>0 &&
@@ -55,9 +55,12 @@ const Genres: React.FC <Props> = ({genres}) => {
 
 export const getServerSideProps = async() => {
     //get a secure route for api/genres
-    const fetchedData = await fetch("http://localhost:3000/api/genres")
-    const data = await fetchedData.json()
-    return {props:{genres:data}}
+    const genresApi = process.env.GENRES_API
+    if(genresApi !== undefined){
+        const fetchedData = await fetch(genresApi)
+        const data = await fetchedData.json()
+        return {props:{genres:data}}
+    }
 }
 export default Genres;
 

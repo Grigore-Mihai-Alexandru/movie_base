@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 interface props{
     pageNumber:number,
@@ -54,11 +56,11 @@ const Pagination: React.FC <props> = ({pageNumber, genreId, totalPages}) => {
         <div className="text-center text-2xl m-5">
             <div>
                 {pageNumber >1 &&
-                    <Link className="mx-2" href={`${linkBase}page=${pageNumber-1}`}>🡸Previous</Link>
+                    <Link className="mx-2" href={`${linkBase}page=${pageNumber-1}`}><ChevronLeftIcon/>Previous</Link>
                 }
                 {paginationLinks()}
                 {pageNumber <totalPages &&
-                    <Link className="mx-2" href={`${linkBase}page=${pageNumber+1}`}>Next🡺</Link>
+                    <Link className="mx-2" href={`${linkBase}page=${pageNumber+1}`}>Next<ChevronRightIcon/></Link>
                 }
             </div>
             {/* <p>PAGE</p> */}

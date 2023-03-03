@@ -23,7 +23,7 @@ const DateInput: React.FC <props> = ({date, setDate, release_date_gte, release_d
     useEffect(()=>{
         if(fromDate !== "")
             if(toDate !== "")
-                setDate(releaseGte + fromDate + releaseLte + toDate)
+                setDate(releaseGte + fromDate + "&" + releaseLte + toDate)
             else setDate(releaseGte + fromDate)
         if(fromDate === "")
             if(toDate !== "")
@@ -34,7 +34,7 @@ const DateInput: React.FC <props> = ({date, setDate, release_date_gte, release_d
     useEffect(()=>{
         if(toDate !== "")
             if(fromDate !== "")
-                setDate(releaseGte + fromDate + releaseLte + toDate)
+                setDate(releaseGte + fromDate + "&" + releaseLte + toDate)
             else 
                 setDate(releaseLte + toDate)
         if(toDate === "")

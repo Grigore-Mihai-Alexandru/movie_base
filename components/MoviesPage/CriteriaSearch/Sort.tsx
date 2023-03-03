@@ -25,12 +25,6 @@ const Sort: React.FC <props>= ({option, setOption}) => {
     function handleOption(e:any){
         setOption(e.target.value)
     }
-    
-    useEffect(()=>{
-        console.log(option)
-    },[option])
-
-
 
     return (
         <div className='text-base gray border-2 border-slate-300 rounded '>

@@ -55,7 +55,6 @@ const CriteriaSearch: React.FC<props> = ({genres}) => {
     },[filterQuery, sortQuery])
     
     useEffect(()=>{
-        console.log(link.slice(0,-1))
         if(link !== linkBase)
         setSearch(true)
         else setSearch(false)
