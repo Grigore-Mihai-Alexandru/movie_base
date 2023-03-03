@@ -23,7 +23,7 @@ const Genres: React.FC <Props> = ({genres}) => {
 
     return (
         <><Head><title>Genres Page</title></Head>
-        <div className="relative w-3/4 m-auto ">
+        <div className="w-3/4 m-auto ">
             <h1 className="text-center text-3xl m-10">Movie Genres</h1>
             <div className="my-4">
                 {genres.length>0 &&
@@ -37,8 +37,8 @@ const Genres: React.FC <Props> = ({genres}) => {
                             background: "linear-gradient(94deg, rgba(61,61,64,0.9) 11%, rgba(61,61,64,0.4) 50%, rgba(61,61,64,1) 91%)",
                         }}></div>
                     </div>
-                    <div className="overflow-y  z-10 w-full h-full" >
-                        <ul className="overflow-y list-none text-lg sm:text-2xl ">
+                    <div className="relative w-full h-full" >
+                        <ul className="list-none text-lg sm:text-2xl ">
                             {genres.map(genre =>
                                 <GenreButton key={genre.id} genre={genre} setImageSrc={setImageSrc}/>
                             )}
