@@ -21,7 +21,6 @@ interface props{
 const SearchResults: React.FC <props> = ({movies, pageNumber}) => {
     const router = useRouter()
     const {query} = router.query
-    console.log(movies)
     
     return (
         <main className='grow relative min-w-full min-h-full'>

@@ -54,11 +54,6 @@ const Button: React.FC <props> = ({name, id, selectedGenres, setSelectedGenres, 
             setSelectedGenres(id.toString() + ",")
     },[active])
 
-    useEffect(()=>{
-        console.log(selectedGenres)
-    },[selectedGenres])
-    
-
     return (
         <div className="py-0.5">
             <button className='w-full hover:font-bold p-1 hover:px-3 ease-in-out duration-100' 
