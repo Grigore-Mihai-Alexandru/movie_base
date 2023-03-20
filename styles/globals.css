@@ -7,9 +7,17 @@
   --dark-red:rgba(92,1,0,255);
   --red:rgba(224,0,0,255);
   --white:rgba(255,255,255,255);
-  --black:rgba(9,9,9,255);
-  --gray:#292729;
+  --black:#1A1A1D;
+  --gray:#4E4E50;
   --dark-gray:#1d1b1d;
+
+  /* 
+  pink: #950740
+  light-red: #C3073F
+  dark-red: #6F2232
+  black: #1A1A1D
+  gray: #4E4E50
+  */
 }
 body{
   background-color: var(--black);
