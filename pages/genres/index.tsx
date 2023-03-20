@@ -30,8 +30,7 @@ const Genres: React.FC <Props> = ({genres}) => {
                 <div className="flex h-full">
                     <div className="absolute z-0 right-0 w-full " style={{height:"700px"}}>
                         <Image className="absolute object-cover" priority={true} quality={50} 
-                        src={imagePath + "w500" + imageSrc} fill={true} alt="" />
-                        <Image className="absolute object-cover" quality={50} 
+                        blurDataURL={imagePath + "w500" + imageSrc}
                         src={imagePath + "original" + imageSrc} fill={true} alt="" />
                         <div className=" absolute z-10 w-full h-full" style={{
                             background: "linear-gradient(94deg, rgba(61,61,64,0.9) 11%, rgba(61,61,64,0.4) 50%, rgba(61,61,64,1) 91%)",

@@ -52,18 +52,18 @@ const Navbar: React.FC <props>= ({width}) => {
     }, [path])
     
     return (
-        <nav className="relative h-16 text-white flex flex-row border-b-2 border-zinc-50 z-10">
+        <nav className="relative h-16 text-white flex flex-row border-b-2 border-zinc-50 z-[100]">
             
             {width != undefined && width > 600 &&
             <>
                 <ul className="list-none flex text-2xl p-4">
-                    <li className="mx-2">
+                    <li className="mx-2 hover:scale-105 transition-all duration-100 hover:text-[gray]">
                         <Link href={"/"} className="">Home</Link>
                     </li>
-                    <li className="mx-2">
+                    <li className="mx-2 hover:scale-105 transition-all duration-100 hover:text-[gray]">
                         <Link href={"/movies"}>Movies</Link>
                     </li>
-                    <li className="mx-2">
+                    <li className="mx-2 hover:scale-105 transition-all duration-100 hover:text-[gray]">
                         <Link href={"/genres"}>Genres</Link>
                     </li>
                 </ul>

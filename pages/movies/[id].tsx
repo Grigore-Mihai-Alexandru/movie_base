@@ -35,24 +35,22 @@ const Movie: React.FC <props> = ({movie,width}) => {
             {movie &&
             <>
                 <div className="absolute w-full h-full" >
-                    <Image fill={true} objectFit="cover" priority={true}
-                    quality={50} src={imagePath + "w500" + movie.backdrop_path} alt="" />
-                    <Image fill={true} objectFit="cover"
+                    <Image fill={true} priority={true} blurDataURL={imagePath + "w500" + movie.backdrop_path}
+                    className="object-cover"
                     quality={50} src={imagePath + "original" + movie.backdrop_path} alt="" />
                     <div className="absolute  w-full h-full" style={{background: "rgba(61,61,64,0.7)"}}></div>
                 </div>
                 <div className="max-w-5xl mt-5 z-10 h-fit sm:h-full flex flex-col sm:flex-row items-center mx-auto">
-                    <div className="relative" 
+                    <div className="relative hover:scale-95 transition-all duration-100" 
                         style={{
                             width:"200px",
                             height:"300px",
                             aspectRatio:"2/3",
                             alignItems:"center"
                         }}>
-                        <Image className="rounded-md relative" priority={true} src={imagePath + "w300" + movie.poster_path} 
+                        <Image className="rounded-md relative" priority={true} src={imagePath + "original" + movie.poster_path} 
+                        blurDataURL={imagePath + "w300" + movie.backdrop_path}
                         quality={30} width={200} height={300} alt="" />
-                        <Image className="rounded-md" src={imagePath + "original" + movie.poster_path} 
-                        quality={30} fill={true}  alt="" />
                     </div>
                     <div className="relative h-fit">
                         <div className=" text-2xl sm:text-4xl px-2 text-center sm:text-left">

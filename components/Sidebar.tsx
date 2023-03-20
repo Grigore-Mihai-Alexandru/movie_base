@@ -17,7 +17,7 @@ const Sidebar: React.FC <props> = ({collapse, setCollapse, width}) => {
     return (
     <>
     {width!=undefined &&
-        <div id='sidenav' className='absolute z-50 sidebar h-screen '
+        <div id='sidenav' className='absolute sidebar h-screen '
             style={{
                 visibility:collapse?"visible":"hidden",
                 opacity:!collapse?0:1,

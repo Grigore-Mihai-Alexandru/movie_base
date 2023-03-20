@@ -33,12 +33,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   return(
+    
     <div className='flex flex-col min-h-screen '>
       <style jsx global>{`
         html {
           font-family: ${quicksand.style.fontFamily};
         }
       `}</style>
+      
       <Navbar width ={width}/>
       <Component  {...pageProps} width={width} />
       <Footer/>

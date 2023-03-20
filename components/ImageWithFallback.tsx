@@ -18,8 +18,11 @@ const ImageFallback: React.FC <props> = ({poster_path, priority, width, name}) =
     
     return (
         <Image className="rounded w-full" 
-        quality={10} src={imgSrc}
-        fill={true} priority={priority}
+        quality={10} src={imgSrc} blurDataURL={imagePath + (width !== undefined && width > 300 ? "w300" : "w200") + poster_path}
+        fill={true} 
+        sizes="(max-width: 768px) 75vw,
+              (max-width: 1200px) 50vw,
+              33vw"
         onError={()=>setImgSrc(imgFallback)} 
         alt={name}/>
     );
