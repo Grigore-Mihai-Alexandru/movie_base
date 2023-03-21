@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 interface props{
     pageNumber:number,
@@ -54,9 +52,8 @@ const Pagination: React.FC <props> = ({pageNumber, genreId, totalPages}) => {
         }
         while(pages <= endPage){
             content.push(<Link 
-                key={pages} 
-                aria-current="page"
-                // aria-current={pages === pageNumber ?"page" : undefined}
+                key={pages}
+                aria-current={pages === pageNumber ?"page" : undefined}
                 className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 
                 hover:bg-gray-100 hover:text-gray-700 bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray hover:text-white"    
                 href={`${linkBase}page=${pages}`}>{pages}</Link>)
