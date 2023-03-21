@@ -42,7 +42,8 @@ const CarouselHome: React.FC<props> = ({trendingMovies}) => {
                 </span>
               </div>
               <div className="absolute h-full w-full translate-y-1/2 translate-x-1/4  z-30 ">
-                <Link href={'/movies/'+movie.id} type="button" className="text-base sm:text-lg md:text-2xl rounded bg-black px-2 py-1 sm:px-4 sm:py-2" >
+                <Link href={'/movies/'+movie.id} type="button" 
+                  className="text-base sm:text-lg md:text-2xl rounded bg-black px-2 py-1 sm:px-4 sm:py-2 hover:scale-110 transition-all duration-150" >
                   Watch now
                 </Link>
               </div>
@@ -77,13 +78,3 @@ const CarouselHome: React.FC<props> = ({trendingMovies}) => {
 }
 
 export default CarouselHome;
-
-const apiKey = process.env.API_KEY
-export const getServerSideProps = async() => {
-  let apiFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
-
-  const data = await fetch(apiFetch)
-  const trendingMovies = await data.json();
-  
-  return {props:{trendingMovies}};
-}
