@@ -66,7 +66,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <CloseIcon/> 
               </button>
             </section>
-            <iframe className='w-full aspect-video' src={"https://www.youtube.com/embed/" + video} allowFullScreen={true}></iframe> 
+            {/* <iframe className='w-full aspect-video' src={"https://www.youtube-nocookie.com/embed/" + video} allow='encrypted-media' allowFullScreen={true}></iframe>  */}
           </section>
         </div>
       </div>
