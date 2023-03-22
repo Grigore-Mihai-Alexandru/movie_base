@@ -59,8 +59,10 @@ export const getServerSideProps = async() => {
   const data = await fetch(apiFetch)
   const trendingMovies = await data.json();
 
-  const fetchData = await fetch("http://localhost:3000/api/trailers")
-  const trailers = await fetchData.json()
+  // const fetchData = await fetch("http://localhost:3000/api/trailers")
+  // const trailers = await fetchData.json()
 
-  return {props:{trendingMovies,trailers:trailers}};
+  return {props:{trendingMovies,
+    // trailers:trailers
+  }};
 }
