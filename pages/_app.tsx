@@ -16,7 +16,7 @@ const quicksand = Quicksand({
 export default function App({ Component, pageProps }: AppProps) {
   const [width, setWidth] = useState<number | undefined>(undefined)
   // const router = useRouter()
-  const [video, setVideo] = useState<string | undefined>(undefined)
+  // const [video, setVideo] = useState<string | undefined>(undefined)
 
   // useEffect(()=>{
   //   if(video !== undefined)
@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
         `}</style>
         
         <Navbar width ={width}/>
-        <Component  {...pageProps} width={width} setVideo={setVideo} video={video}/>
+        <Component  {...pageProps} width={width} />
         <Footer/>
       </div>
       
