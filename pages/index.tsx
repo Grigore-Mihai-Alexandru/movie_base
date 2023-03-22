@@ -54,15 +54,18 @@ const Home: React.FC <props> = ({video,setVideo,trendingMovies,trailers}) => {
 export default Home;
 
 const apiKey = process.env.API_KEY
+const trailersApi = process.env.TRAILERS_API
 export const getServerSideProps = async() => {
   let apiFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
   const data = await fetch(apiFetch)
   const trendingMovies = await data.json();
 
-  // const fetchData = await fetch("http://localhost:3000/api/trailers")
-  // const trailers = await fetchData.json()
-
-  return {props:{trendingMovies,
-    // trailers:trailers
-  }};
+  if(trailersApi !== undefined){
+    const fetchData = await fetch("http://localhost:3000/api/trailers")
+    const trailers = await fetchData.json()  
+    return {props:{trendingMovies,
+      trailers:trailers
+    }};
+  }
+  return {props:{trendingMovies}}
 }
