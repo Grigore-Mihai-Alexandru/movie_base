@@ -15,7 +15,7 @@ const quicksand = Quicksand({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [width, setWidth] = useState<number | undefined>(undefined)
-  const router = useRouter()
+  // const router = useRouter()
   const [video, setVideo] = useState<string | undefined>(undefined)
 
   useEffect(()=>{
@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
       document.getElementById('main')!.classList.add('blur-sm')
     else document.getElementById('main')?.classList.remove('blur-sm')
   },[video])
-  useEffect(()=>{
-    setVideo(undefined)
-  },[router])
+  // useEffect(()=>{
+  //   setVideo(undefined)
+  // },[router])
 
   useEffect(()=>{
     setWidth(window.innerWidth)
