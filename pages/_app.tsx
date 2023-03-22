@@ -1,4 +1,3 @@
-"use client"
 import {useState, useEffect} from 'react'
 import Navbar from '@/components/Navbar'
 import '@/styles/globals.css'
@@ -15,18 +14,18 @@ const quicksand = Quicksand({
 
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter()
   const [width, setWidth] = useState<number | undefined>(undefined)
-  const [video, setVideo] = useState<string | undefined>(undefined)
+  // const router = useRouter()
+  // const [video, setVideo] = useState<string | undefined>(undefined)
 
-  useEffect(()=>{
-    if(video !== undefined)
-      document.getElementById('main')!.classList.add('blur-sm')
-    else document.getElementById('main')?.classList.remove('blur-sm')
-  },[video])
-  useEffect(()=>{
-    setVideo(undefined)
-  },[router])
+  // useEffect(()=>{
+  //   if(video !== undefined)
+  //     document.getElementById('main')!.classList.add('blur-sm')
+  //   else document.getElementById('main')?.classList.remove('blur-sm')
+  // },[video])
+  // useEffect(()=>{
+  //   setVideo(undefined)
+  // },[router])
 
   useEffect(()=>{
     setWidth(window.innerWidth)
@@ -45,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
   },[width])
 
   return(
-    <div className='relative'>
+    <>
       <div id='main' className='flex flex-col min-h-screen '>
         <style jsx global>{`
           html {
@@ -54,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
         `}</style>
         
         <Navbar width ={width}/>
-        <Component  {...pageProps} width={width} video={video} setVideo={setVideo} />
+        <Component  {...pageProps} width={width} />
         <Footer/>
       </div>
       
@@ -71,6 +70,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </div>
         </div>
       </div> */}
-    </div>
+    </>
   ) 
 }
