@@ -15,7 +15,7 @@ const quicksand = Quicksand({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [width, setWidth] = useState<number | undefined>(undefined)
-  // const router = useRouter()
+  const router = useRouter()
   const [video, setVideo] = useState<string | undefined>(undefined)
 
   useEffect(()=>{
@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
       document.getElementById('main')!.classList.add('blur-sm')
     else document.getElementById('main')?.classList.remove('blur-sm')
   },[video])
-  // useEffect(()=>{
-  //   setVideo(undefined)
-  // },[router])
+  useEffect(()=>{
+    setVideo(undefined)
+  },[router])
 
   useEffect(()=>{
     setWidth(window.innerWidth)
@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
   },[width])
 
   return(
-    <>
+    <div className='relative'>
       <div id='main' className='flex flex-col min-h-screen '>
         <style jsx global>{`
           html {
@@ -53,11 +53,11 @@ export default function App({ Component, pageProps }: AppProps) {
         `}</style>
         
         <Navbar width ={width}/>
-        <Component  {...pageProps} width={width} setVideo={setVideo} video={video}/>
+        <Component  {...pageProps} width={width} video={video} setVideo={setVideo}/>
         <Footer/>
       </div>
       
-      {/* <div className='absolute top-0 z-[9999999] h-full w-full bg-transparent' hidden={video === undefined}>
+      <div className='absolute top-0 z-[9999999] h-full w-full bg-transparent' hidden={video === undefined}>
         <div className='fixed h-full w-full flex justify-center'>
           <div className='absolute top-0 bottom-0 sm:w-3/4 lg:w-1/2 m-auto h-fit flex flex-col  bg-[rgb(0,0,0)]'>
             <div className='flex flex-row justify-between p-1 sm:p-2 md:p-4'>
@@ -69,7 +69,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <iframe className='w-full aspect-video' src={"https://www.youtube-nocookie.com/embed/" + video} allow='encrypted-media' allowFullScreen={true}></iframe> 
           </div>
         </div>
-      </div> */}
-    </>
+      </div>
+    </div>
   ) 
 }
