@@ -1,3 +1,4 @@
+"use client"
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,7 +22,6 @@ interface videos{
         published_at:string,
     }]
 }
-
 
 const Trailers: React.FC <props> = ({trailers, video, setVideo}) => {
     return (
@@ -56,8 +56,6 @@ const Trailers: React.FC <props> = ({trailers, video, setVideo}) => {
         </div>
     );
 }
-//  <iframe width="420" height="315" src={"https://www.youtube.com/embed/" + movie.videoData.results[0].key}></iframe> 
-
 export default Trailers;
 
 
