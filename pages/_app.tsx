@@ -18,11 +18,11 @@ export default function App({ Component, pageProps }: AppProps) {
   // const router = useRouter()
   const [video, setVideo] = useState<string | undefined>(undefined)
 
-  useEffect(()=>{
-    if(video !== undefined)
-      document.getElementById('main')!.classList.add('blur-sm')
-    else document.getElementById('main')?.classList.remove('blur-sm')
-  },[video])
+  // useEffect(()=>{
+  //   if(video !== undefined)
+  //     document.getElementById('main')!.classList.add('blur-sm')
+  //   else document.getElementById('main')?.classList.remove('blur-sm')
+  // },[video])
   // useEffect(()=>{
   //   setVideo(undefined)
   // },[router])
