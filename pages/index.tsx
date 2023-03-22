@@ -61,7 +61,7 @@ export const getServerSideProps = async() => {
   const trendingMovies = await data.json();
 
   if(trailersApi !== undefined){
-    const fetchData = await fetch("http://localhost:3000/api/trailers")
+    const fetchData = await fetch(trailersApi)
     const trailers = await fetchData.json()  
     return {props:{trendingMovies,
       trailers:trailers
