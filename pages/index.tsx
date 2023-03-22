@@ -46,7 +46,7 @@ const Home: React.FC <props> = ({video,setVideo,trendingMovies,trailers}) => {
       <main className='grow relative min-w-full min-h-full my-5'>
         <h1 className='text-xl md:text-3xl p-2 sm:p-4'>Trending</h1>
         <CarouselHome trendingMovies = {trendingMovies}/>
-        <Trailers setVideo={setVideo} video={video} trailers={trailers}/>
+        {/* <Trailers setVideo={setVideo} video={video} trailers={trailers}/> */}
       </main>
     </>
   )
